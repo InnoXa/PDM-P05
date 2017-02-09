@@ -11,6 +11,7 @@ public class Visualizacion extends AppCompatActivity implements View.OnClickList
 
     Button botonAtras;
     ImageButton botonListarOrdenadores;
+    ImageButton botonListarAlumnos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,8 +20,10 @@ public class Visualizacion extends AppCompatActivity implements View.OnClickList
 
         botonAtras = (Button) findViewById(R.id.button_atras);
         botonListarOrdenadores = (ImageButton) findViewById(R.id.imageButton_verOrdenadores);
+        botonListarAlumnos = (ImageButton) findViewById(R.id.imageButton_verAlumnos);
 
         botonListarOrdenadores.setOnClickListener(this);
+        botonListarAlumnos.setOnClickListener(this);
         botonAtras.setOnClickListener(this);
     }
 
@@ -31,8 +34,14 @@ public class Visualizacion extends AppCompatActivity implements View.OnClickList
                 Intent visual = new Intent(Visualizacion.this, ListaOrdenadores.class);
                 startActivity(visual);
                 break;
+            case R.id.imageButton_verAlumnos:
+                Intent alum = new Intent(Visualizacion.this, ListaAlumnos.class);
+                alum.putExtra("codigoBoton", 0);
+                startActivity(alum);
+                break;
             case R.id.button_atras:
                 finish();
+                break;
         }
     }
 }

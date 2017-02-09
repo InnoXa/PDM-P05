@@ -28,10 +28,8 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
         botonVisualizar.setOnClickListener(this);
         botonInsertar.setOnClickListener(this);
 
-        //BaseDeDatos bd = new BaseDeDatos(getApplicationContext());
-
-        //bd.insertarORDENADOR(1, "asdasd", "asdasd", "asdasd", 3);
-        //Toast.makeText(getApplicationContext(), "Base de datos borrada", Toast.LENGTH_SHORT).show();
+        BaseDeDatos bd = new BaseDeDatos(getApplicationContext());
+        //bd.borrarAlumnosDeOrdenador(1);
     }
 
     @Override

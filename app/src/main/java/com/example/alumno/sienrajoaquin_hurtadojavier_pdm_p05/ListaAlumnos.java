@@ -5,67 +5,72 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class ListaAlumnos extends AppCompatActivity {
+public class ListaAlumnos extends AppCompatActivity implements View.OnClickListener{
 
     private ListView listView;
+    Button botonInsertarAlumno, botonAtras;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_alumnos);
 
+        botonInsertarAlumno = (Button) findViewById(R.id.button_insertar);
+
+        botonInsertarAlumno.setEnabled(false);
+        botonInsertarAlumno.setClickable(false);
+        botonInsertarAlumno.setVisibility(View.INVISIBLE);
+
+        botonAtras = (Button) findViewById(R.id.button_Atras);
+
         final BaseDeDatos bd = new BaseDeDatos(getApplicationContext());
+        ArrayList<Alumno> datos;
 
-        ArrayList<Alumno> datos = bd.recuperarALUMNOS();
+        switch(getIntent().getExtras().getInt("codigoBoton")){
+            case 0:
+                datos = bd.recuperarALUMNOS();
+
+                break;
+            default:
+                datos = bd.recuperarALUMNOSporID(getIntent().getExtras().getInt("idOrdenador"));
+
+                botonInsertarAlumno.setEnabled(true);
+                botonInsertarAlumno.setClickable(true);
+                botonInsertarAlumno.setVisibility(View.VISIBLE);
+        }
+        if(datos.isEmpty()){
+            Toast.makeText(this, "La lista está vacía.", Toast.LENGTH_SHORT).show();
+        }
+
+        botonAtras.setOnClickListener(this);
+        botonInsertarAlumno.setOnClickListener(this);
+
+        AlumnoAdapter alumAd= new AlumnoAdapter(this, datos);
+
         listView = (ListView) findViewById(R.id.listView);
-        listView.setAdapter(new ListaAdapter(this, R.layout.layout_lista, datos) {
-            @Override
-            public void onEntrada(Object entrada, View view) {
-                if (entrada != null) {
-                    TextView textoDNI = (TextView) view.findViewById(R.id.textViewDNI);
-                    if (textoDNI != null)
-                        textoDNI.setText(((Alumno) entrada).getDNI());
 
-                    TextView textoNombre = (TextView) view.findViewById(R.id.textViewNombre);
-                    if (textoNombre != null)
-                        textoNombre.setText(((Alumno) entrada).getNombre());
+        listView.setAdapter(alumAd);
+    }
 
-                    TextView textoCurso = (TextView) view.findViewById(R.id.textViewCurso);
-                    if (textoCurso != null)
-                        textoCurso.setText(((Alumno) entrada).getCurso());
-
-                    TextView textoFecha = (TextView) view.findViewById(R.id.textViewFecha);
-                    if (textoFecha != null)
-                        textoFecha.setText(((Alumno) entrada).getFechaMatriculaString());
-
-                }
-            }
-        });
-        /*lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position,
-                                    long id) {
-
-                TextView textoContacto = (TextView) view.findViewById(R.id.textView_contacto);
-                TextView textoTelefono = (TextView) view.findViewById(R.id.textView_telefono);
-                TextView textoEmail = (TextView) view.findViewById(R.id.textView_email);
-                TextView textoID = (TextView) view.findViewById(R.id.textView_ID);
-                CharSequence texto = "Seleccionado: " + textoContacto.getText();
-                Toast.makeText(getApplicationContext(), texto, Toast.LENGTH_LONG).show();
-                Intent returnIntent = new Intent();
-                returnIntent.putExtra("nombre", textoContacto.getText());
-                returnIntent.putExtra("telefono", textoTelefono.getText());
-                returnIntent.putExtra("email", textoEmail.getText());
-                returnIntent.putExtra("ID", textoID.getText());
-                setResult(RESULT_OK, returnIntent);
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()){
+            case R.id.button_insertar:
+                Intent alum = new Intent(ListaAlumnos.this, insertar_Alumno.class);
+                alum.putExtra("idOrdenador", getIntent().getExtras().getInt("idOrdenador"));
+                if(getIntent().getExtras().getInt("codigoBoton")==1)
+                    alum.putExtra("codigoBoton", 1);
+                startActivity(alum);
+                break;
+            case R.id.button_Atras:
                 finish();
-            }
-        });*/
+        }
     }
 }

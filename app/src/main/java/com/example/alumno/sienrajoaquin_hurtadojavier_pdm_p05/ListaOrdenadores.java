@@ -1,6 +1,7 @@
 package com.example.alumno.sienrajoaquin_hurtadojavier_pdm_p05;
 
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
@@ -46,11 +47,10 @@ public class ListaOrdenadores extends AppCompatActivity implements View.OnClickL
         verHija.setOnClickListener(this);
         atras.setOnClickListener(this);
 
-
-        listaOrdenadores = (EditText) findViewById(R.id.editText_Ordenador);
-
         bd = new BaseDeDatos(getApplicationContext());
         lista = bd.recuperarORDENADORES();
+
+        listaOrdenadores = (EditText) findViewById(R.id.editText_Ordenador);
 
         anterior.setEnabled(false);
 
@@ -100,6 +100,17 @@ public class ListaOrdenadores extends AppCompatActivity implements View.OnClickL
                     anterior.setEnabled(true);
                     siguiente.setEnabled(false);
                 }
+                break;
+            case R.id.botonVerHijas:
+                Intent alum = new Intent(ListaOrdenadores.this, ListaAlumnos.class);
+                alum.putExtra("codigoBoton", 1);
+                alum.putExtra("idOrdenador", lista.get(contador).getId());
+                startActivity(alum);
+                break;
+            case R.id.botonAtras:
+                finish();
+                break;
+
         }
     }
 }

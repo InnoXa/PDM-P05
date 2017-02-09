@@ -16,19 +16,11 @@ public class Alumno {
 
     }
 
-    public Alumno(int dni, String nombre, int curso, String fechaMatricula, int IDOrdenador) {
+    public Alumno(int dni, String nombre, int curso, Date fechaMatricula, int IDOrdenador) {
         this.dni = dni;
         this.nombre = nombre;
         this.curso = curso;
-
-        SimpleDateFormat dateformat = new SimpleDateFormat("dd-MM-yyyy");
-        try {
-            this.fechaMatricula = dateformat.parse(fechaMatricula);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-
+        this.fechaMatricula = fechaMatricula;
         this.IDOrdenador = IDOrdenador;
     }
 
@@ -50,6 +42,7 @@ public class Alumno {
 
     public String getFechaMatriculaString() {
         SimpleDateFormat dateformat = new SimpleDateFormat("dd-MM-yyyy");
+        System.out.println(fechaMatricula);
         return dateformat.format(fechaMatricula);
     }
 

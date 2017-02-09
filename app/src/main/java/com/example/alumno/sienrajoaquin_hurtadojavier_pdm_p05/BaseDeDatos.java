@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
 
 import java.sql.Date;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
@@ -208,7 +209,13 @@ public class BaseDeDatos extends SQLiteOpenHelper {
             c.moveToFirst();
         }
 
-        Alumno alumno = new Alumno(c.getInt(0), c.getString(1), c.getInt(2), c.getString(3), c.getInt(4));
+        SimpleDateFormat dateformat = new SimpleDateFormat("dd-MM-yyyy");
+        Alumno alumno = null;
+        try {
+            alumno = new Alumno(c.getInt(0), c.getString(1), c.getInt(2), dateformat.parse(c.getString(3)), c.getInt(4));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
         db.close();
         c.close();
@@ -237,14 +244,42 @@ public class BaseDeDatos extends SQLiteOpenHelper {
         ArrayList<Alumno> listaAlumnos = new ArrayList<>();
         String[] valores_recuperar = {"dni", "nombre", "curso", "fecha_matricula", "id_ordenador"};
         Cursor c = db.query("alumnos", valores_recuperar, null, null, null, null, null, null);
-        c.moveToFirst();
+        if(c != null && c.moveToFirst()) {
 
-        do {
-            listaAlumnos.add(new Alumno(c.getInt(0), c.getString(1), c.getInt(2), c.getString(3), c.getInt(4)));
-        }while(c.moveToNext());
+            do {
+                SimpleDateFormat dateformat = new SimpleDateFormat("dd-MM-yyyy");
+                try {
+                    listaAlumnos.add(new Alumno(c.getInt(0), c.getString(1), c.getInt(2), dateformat.parse(c.getString(3)), c.getInt(4)));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            } while (c.moveToNext());
 
-        db.close();
-        c.close();
+            db.close();
+            c.close();
+        }
+        return listaAlumnos;
+    }
+
+    public ArrayList<Alumno> recuperarALUMNOSporID(int id){
+        SQLiteDatabase db = getReadableDatabase();
+        ArrayList<Alumno> listaAlumnos = new ArrayList<>();
+        String[] valores_recuperar = {"dni", "nombre", "curso", "fecha_matricula", "id_ordenador"};
+        Cursor c = db.query("alumnos", valores_recuperar, "id_ordenador = "+id, null, null, null, null, null);
+        if(c != null && c.moveToFirst()) {
+
+            do {
+                SimpleDateFormat dateformat = new SimpleDateFormat("dd-MM-yyyy");
+                try {
+                    listaAlumnos.add(new Alumno(c.getInt(0), c.getString(1), c.getInt(2), dateformat.parse(c.getString(3)), c.getInt(4)));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            } while (c.moveToNext());
+
+            db.close();
+            c.close();
+        }
         return listaAlumnos;
     }
 }

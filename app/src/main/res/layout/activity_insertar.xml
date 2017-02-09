@@ -52,7 +52,8 @@
                 android:id="@+id/textView_id"
                 android:textStyle="normal|bold"
                 android:textAlignment="center"
-                android:textColor="?android:attr/textColorPrimaryInverse" />
+                android:textColor="?android:attr/textColorPrimaryInverse"
+                android:background="@color/accentColor" />
 
             <EditText
                 android:layout_width="match_parent"
@@ -72,7 +73,8 @@
                 android:id="@+id/textView_so"
                 android:textStyle="normal|bold"
                 android:textAlignment="center"
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/white"
+                android:background="@color/accentColor" />
 
             <EditText
                 android:layout_width="match_parent"
@@ -81,7 +83,8 @@
                 android:ems="10"
                 android:id="@+id/editText_so"
                 android:textColor="@android:color/black"
-                android:background="@android:color/white" />
+                android:background="@android:color/white"
+                android:textAlignment="center" />
 
             <TextView
                 android:text="AULA:"
@@ -90,7 +93,8 @@
                 android:id="@+id/textView_aula"
                 android:textColor="@android:color/white"
                 android:textStyle="normal|bold"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:background="@color/accentColor" />
 
             <EditText
                 android:layout_width="match_parent"
@@ -109,7 +113,8 @@
                 android:id="@+id/textView_estado"
                 android:textStyle="normal|bold"
                 android:textAlignment="center"
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/white"
+                android:background="@color/accentColor" />
 
             <EditText
                 android:layout_width="match_parent"
@@ -119,7 +124,8 @@
                 android:id="@+id/editText_estado"
                 android:hint="Escriba la descripcion del estado del ordenador..."
                 android:textStyle="normal|bold"
-                android:background="@android:color/white" />
+                android:background="@android:color/white"
+                android:textAlignment="center" />
 
             <TextView
                 android:text="ELIJA SU IMAGEN:"
@@ -128,7 +134,8 @@
                 android:id="@+id/textView_imagen"
                 android:textStyle="normal|bold"
                 android:textAlignment="center"
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/white"
+                android:background="@color/accentColor" />
 
             <GridView
                 android:layout_width="match_parent"

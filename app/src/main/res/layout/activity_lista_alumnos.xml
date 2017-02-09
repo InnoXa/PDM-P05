@@ -23,10 +23,28 @@
         android:textStyle="normal|bold"
         android:textAlignment="center" />
 
+    <Button
+        android:text="ATRÁS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/textView2"
+        android:id="@+id/button_Atras" />
+
+    <Button
+        android:text="INSERTAR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/button_insertar" />
+
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/textView2"
         android:layout_centerHorizontal="true"
+        android:layout_above="@+id/button_Atras"
+        android:layout_below="@+id/textView2"
         android:id="@+id/listView" />
+
 </RelativeLayout>
