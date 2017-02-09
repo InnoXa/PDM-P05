@@ -46,7 +46,7 @@
         android:text="Borrar Datos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/botonBorrar"
+        android:id="@+id/botonBorrarPrincipal"
         android:layout_alignBaseline="@+id/botonVisualizar"
         android:layout_alignBottom="@+id/botonVisualizar"
         android:layout_alignParentEnd="true" />

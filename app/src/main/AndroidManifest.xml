@@ -18,7 +18,9 @@
         <activity android:name=".Visualizacion" />
         <activity android:name=".ListaAlumnos" />
         <activity android:name=".ListaOrdenadores" />
-        <activity android:name=".Insertar"></activity>
+        <activity android:name=".Insertar" />
+        <activity android:name=".insertar_Alumno" />
+        <activity android:name=".BorrarDatos"></activity>
     </application>
 
 </manifest>

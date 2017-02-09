@@ -47,7 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_toStartOf="@+id/botonBorrar"
+        android:layout_toStartOf="@+id/botonBorrarPrincipal"
         android:id="@+id/button4"
         android:textSize="10sp" />
 
@@ -55,7 +55,7 @@
         android:text="Borrar Datos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/botonBorrar"
+        android:id="@+id/botonBorrarPrincipal"
         android:layout_marginTop="26dp"
         android:layout_below="@+id/botonInsertar"
         android:layout_alignStart="@+id/botonInsertar"

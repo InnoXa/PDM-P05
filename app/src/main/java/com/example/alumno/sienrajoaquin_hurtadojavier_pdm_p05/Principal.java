@@ -5,17 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.GridView;
-import android.widget.Toast;
-
-import java.sql.Date;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
 public class Principal extends AppCompatActivity implements View.OnClickListener{
 
     Button botonVisualizar;
     Button botonInsertar;
+    Button botonBorrar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,9 +19,11 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
 
         botonVisualizar = (Button) findViewById(R.id.botonVisualizar);
         botonInsertar = (Button) findViewById(R.id.botonInsertar);
+        botonBorrar = (Button) findViewById(R.id.botonBorrarPrincipal);
 
         botonVisualizar.setOnClickListener(this);
         botonInsertar.setOnClickListener(this);
+        botonBorrar.setOnClickListener(this);
 
         BaseDeDatos bd = new BaseDeDatos(getApplicationContext());
         //bd.borrarAlumnosDeOrdenador(1);
@@ -42,6 +39,12 @@ public class Principal extends AppCompatActivity implements View.OnClickListener
             case R.id.botonInsertar:
                 Intent inser = new Intent(Principal.this, Insertar.class);
                 startActivity(inser);
+                break;
+            case R.id.botonBorrarPrincipal:
+                Intent borrar = new Intent(Principal.this, BorrarDatos.class);
+                startActivity(borrar);
+                break;
+
         }
     }
 }
