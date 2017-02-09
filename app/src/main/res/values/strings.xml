@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">SienraJoaquin-HurtadoJavier-PDM-P05</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="titulo_actividad_detalle">Actividad De Detalle</string>
+
+    <string name="nombre_transicion_imagen">imagen_compartida</string>
+</resources>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.alumno.sienrajoaquin_hurtadojavier_pdm_p05">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/icono96"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".Principal">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Visualizacion" />
+        <activity android:name=".ListaAlumnos" />
+        <activity android:name=".ListaOrdenadores" />
+        <activity android:name=".Insertar"></activity>
+    </application>
+
+</manifest>
